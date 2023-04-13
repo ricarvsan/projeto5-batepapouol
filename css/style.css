@@ -1,0 +1,135 @@
+/*
+font-family: 'Righteous', cursive;
+font-family: 'Roboto', sans-serif;
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.header {
+    background-color: #FFFFFF;
+    width: 375px;
+    height: 80px;
+    box-shadow: 0px 4px 6px 0px #0000000D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0 22px;
+}
+
+.logo img {
+    width: 75px;
+    height: 53px;
+}
+
+.icone-bp ion-icon {
+    width: 42px;
+    height: 31px;
+}
+
+.icone-bp:hover, .icone-sendmessage:hover {
+    cursor: pointer;
+}
+
+.mid {
+    width: 375px;
+    margin: 90px 0;
+}
+
+.footer {
+    background-color: #FFFFFF;
+    width: 375px;
+    height: 80px;
+    box-shadow: 0px 4px 6px 0px #0000000D;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;    
+    padding: 0px 17px;
+}
+
+.text-input {
+    width: 145px;
+    height: 30px;
+}
+
+.text-input input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #000000;
+    border: none;
+    outline: none;
+}
+
+.text-input input:placeholder-shown {
+    font-style: italic;
+}
+
+.icone-sendmessage ion-icon {
+    width: 26px;
+    height: 26px;
+}
+
+li {
+    background-color: red;
+    width: 100%;
+    margin-bottom: 4px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    line-height: 20px;
+    padding: 9px;
+    font-family: ;
+}
+
+.entrada-saida {
+    background-color: #DCDCDC;
+}
+
+.pm {
+    background-color: #FFDEDE;
+}
+
+.publico {
+    background-color: #FFFFFF;
+
+}
+
+.lista {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 375px;
+    height: 100%;
+    background: #00000099;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.participantes {
+    background: #FFFFFF;
+    width: 259px;
+    height: 100%;
+
+}
+
+.hide-list {
+    display: none;
+}
