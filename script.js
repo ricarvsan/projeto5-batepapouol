@@ -59,18 +59,21 @@ function erroEnvioNome(erro){
 function enviarMsg() {
     let campoEnviarMsg = document.querySelector('.mensagem-envio');
 
-    let novaMsg = {
-        from: nome.name,
-        to: "Todos",
-        text: campoEnviarMsg.value,
-        type: "message"
-    };
+    if(campoEnviarMsg.value !== '') {
 
-    campoEnviarMsg.value = "";
+        let novaMsg = {
+            from: nome.name,
+            to: "Todos",
+            text: campoEnviarMsg.value,
+            type: "message"
+        };
 
-    const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
-    promessa.then(renderizarMsgs);
-    promessa.catch(resposta => window.location.reload());
+        campoEnviarMsg.value = "";
+
+        const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
+        promessa.then(renderizarMsgs);
+        promessa.catch(resposta => window.location.reload());
+    }
 } 
 
 function receberMsgs(resposta){
