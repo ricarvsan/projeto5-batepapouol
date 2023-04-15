@@ -13,58 +13,46 @@
 </head>
 
 <body>
+
+    <!-- PAGINA DE LOGIN -->
+
+
+
     <!-- CABEÇALHO -->
     <div class="header">
         <div class="logo">
             <img src="./img/logo.png" alt="">
         </div>
-        <div class="icone-bp" onclick="listaParticipantes()">
+        <div class="icone-bp" onclick="abrirListaParticipantes()">
             <ion-icon name="people"></ion-icon>
         </div>
     </div>
 
     <!-- AREA CENTRAL -->
     <div class="mid">
-        <ul class="mensagens">
-            <li class="entrada-saida">entra na sala...</li>
-            <li class="publico">Bom dia</li>
-            <li class="pm">oi gatinha</li>
-            <li class="entrada-saida">entra na sala...</li>
-            <li class="publico">Bom dia</li>
-            <li class="pm">oi gatinha</li>
-            <li class="entrada-saida">entra na sala...</li>
-            <li class="publico">Bom dia</li>
-            <li class="pm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum, laborum odit ad alias maiores autem quidem facilis beatae modi hic similique! Itaque, provident culpa inventore aperiam eius enim magni expedita.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla sunt aliquam quidem at aperiam incidunt temporibus magnam, modi excepturi labore minima? Voluptas doloribus saepe ipsa. Ipsa in accusantium perspiciatis ex?
-            </li>
-            <li class="entrada-saida">entra na sala...</li>
-            <li class="publico">Bom dia</li>
-            <li class="pm">oi gatinha</li>
-            <li class="entrada-saida">entra na sala...</li>
-            <li class="publico">Bom dia</li>
-            <li class="pm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum, laborum odit ad alias maiores autem quidem facilis beatae modi hic similique! Itaque, provident culpa inventore aperiam eius enim magni expedita.
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla sunt aliquam quidem at aperiam incidunt temporibus magnam, modi excepturi labore minima? Voluptas doloribus saepe ipsa. Ipsa in accusantium perspiciatis ex?
-            </li>
+        <ul class="mensagens">            
         </ul>
     </div>
 
     <!-- LISTA DE PARTICIPANTES -->
-    <div class="lista hide-list">
+    <div class="lista hide-list" onclick="fecharListaParticipantes()">
         <div class="participantes"></div>
     </div>
 
     <!-- RODAPÉ -->
     <div class="footer">
-        <div class="text-input">
-            <input type="text" placeholder="Escreva aqui...">
+        <div data-test="input-message" class="text-input">
+            <input class="mensagem-envio" type="text" placeholder="Escreva aqui...">
         </div>
-        <div class="icone-sendmessage">
+        <div data-test="send-message" class="icone-sendmessage" onclick="enviarMsg()">
             <ion-icon name="paper-plane-outline"></ion-icon>
         </div>
     </div>  
 
                                 <!-- SCRIPTS -->
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script> 
+
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <script src="./script.js"></script>
 </body>

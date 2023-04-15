@@ -87,7 +87,6 @@ body {
 }
 
 li {
-    background-color: red;
     width: 100%;
     margin-bottom: 4px;
     min-height: 40px;
@@ -95,7 +94,8 @@ li {
     align-items: center;
     line-height: 20px;
     padding: 9px;
-    font-family: ;
+    background-color: #FFFFFF;
+    font-size: 14px;
 }
 
 .entrada-saida {
@@ -104,11 +104,6 @@ li {
 
 .pm {
     background-color: #FFDEDE;
-}
-
-.publico {
-    background-color: #FFFFFF;
-
 }
 
 .lista {
@@ -127,9 +122,22 @@ li {
     background: #FFFFFF;
     width: 259px;
     height: 100%;
-
 }
 
 .hide-list {
     display: none;
+}
+
+span {
+    font-size: 14px;
+}
+
+span.time {
+    font-weight: 400;
+    color: #AAAAAA;
+}
+
+span.nome {
+    font-weight: 700;
+    color: #000000;
 }
