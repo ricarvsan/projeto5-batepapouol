@@ -23,12 +23,27 @@ function fecharListaParticipantes() {
 
 function manterConexao(){
     const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', nome);
-    promessa.then(resposta => console.log('Conexão mantida'));
+    promessa.then(console.log('Conexão mantida'));
+}
+
+function nomeJaExiste(){
+    for(let i = 0; i < listaDeParticipantes.length; i++){
+        let nome = listaDeParticipantes[i].name;
+        if(nomeDigitado === nome){
+            resolicitarNome++;
+            solicitarNome();
+        }
+    }
 }
 
 function solicitarNome(){
     if(resolicitarNome < 1) {
         nomeDigitado = prompt("Digite seu nome:\n");
+
+        const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants');
+        promessa.then(resposta => listaDeParticipantes = resposta.data);
+
+        nomeJaExiste();
     } else {
         nomeDigitado = prompt("O nome digitado já está em uso\nDigite outro nome:\n");
     }    
@@ -46,6 +61,7 @@ function respostaEnvioNome(resposta){
     console.log(resposta) 
     if(resposta.status === 200) {
         setInterval(manterConexao, 5000);
+        renderizarMsgs();
     }
 }
 
@@ -66,13 +82,12 @@ function enviarMsg() {
             to: "Todos",
             text: campoEnviarMsg.value,
             type: "message"
-        };
-
-        campoEnviarMsg.value = "";
+        };       
 
         const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
         promessa.then(renderizarMsgs);
         promessa.catch(resposta => window.location.reload());
+        campoEnviarMsg.value = "";
     }
 } 
 
@@ -85,10 +100,16 @@ function receberMsgs(resposta){
     for( let i = 0; i < listaMsgsRecebidas.length; i++){
         let msg = listaMsgsRecebidas[i];
         
-        if((msg.text === "entra na sala...") || (msg.text === "sai da sala...")) {
+        if(msg.type === "status") {
             ulMsgs.innerHTML += `
             <li data-test="message">
                 <p><span class="time">(${msg.time})</span> <span class="nome">${msg.from}</span> ${msg.text}</p>
+            </li>
+        `;
+        } else if (msg.type === "private_message"){
+            ulMsgs.innerHTML += `
+            <li data-test="message">
+                <p><span class="time">(${msg.time}) </span><span class="nome">${msg.from} </span>reservadamente para <span class="nome">${msg.to}: </span>${msg.text}</p>
             </li>
         `;
         } else {
@@ -112,4 +133,3 @@ function renderizarMsgs(){
 }
 
 solicitarNome();
-renderizarMsgs();
