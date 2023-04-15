@@ -13,7 +13,7 @@ function abrirListaParticipantes() {
     participantes.classList.remove('hide-list');
 
     const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants');
-    promessa.then(resposta => {listaDeParticipantes = resposta.data; console.log(listaDeParticipantes)});
+    promessa.then(resposta => listaDeParticipantes = resposta.data);
 }
 
 function fecharListaParticipantes() {
@@ -69,11 +69,9 @@ function enviarMsg() {
     campoEnviarMsg.value = "";
 
     const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
-    promessa.then(resposta => console.log(resposta));
-    promessa.catch(resposta => console.log(resposta));
-
-    renderizarMsgs();
-}
+    promessa.then(renderizarMsgs);
+    promessa.catch(resposta => window.location.reload());
+} 
 
 function receberMsgs(resposta){
     listaMsgsRecebidas = resposta.data;
@@ -87,13 +85,13 @@ function receberMsgs(resposta){
         if((msg.text === "entra na sala...") || (msg.text === "sai da sala...")) {
             ulMsgs.innerHTML += `
             <li data-test="message">
-                <span class="time">(${msg.time})</span>&#160<span class="nome">${msg.from}</span>&#160${msg.text}
+                <p><span class="time">(${msg.time})</span> <span class="nome">${msg.from}</span> ${msg.text}</p>
             </li>
         `;
         } else {
             ulMsgs.innerHTML += `
             <li data-test="message">
-                <span class="time">(${msg.time})</span>&#160<span class="nome">${msg.from}&#160</span>para&#160<span class="nome">${msg.to}:&#160</span>${msg.text}
+                <p><span class="time">(${msg.time}) </span><span class="nome">${msg.from} </span>para <span class="nome">${msg.to}: </span>${msg.text}</p>
             </li>
         `;
         }
@@ -101,8 +99,6 @@ function receberMsgs(resposta){
 }
 
 function renderizarMsgs(){
-    const ulMsgs = document.querySelector('.mensagens');    
-
     const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
     promessa.then(receberMsgs);
 
@@ -112,5 +108,5 @@ function renderizarMsgs(){
     }
 }
 
-//solicitarNome();
+solicitarNome();
 renderizarMsgs();

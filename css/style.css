@@ -46,7 +46,7 @@ body {
 
 .mid {
     width: 375px;
-    margin: 90px 0;
+    margin: 85px 0;
 }
 
 .footer {
@@ -87,6 +87,7 @@ body {
 }
 
 li {
+    background-color: red;
     width: 100%;
     margin-bottom: 4px;
     min-height: 40px;
@@ -126,10 +127,6 @@ li {
 
 .hide-list {
     display: none;
-}
-
-span {
-    font-size: 14px;
 }
 
 span.time {
