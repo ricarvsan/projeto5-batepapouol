@@ -61,22 +61,19 @@ function solicitarNome(){
 }
 
 function enviarMsg() {
-    let campoEnviarMsg = document.querySelector('.mensagem-envio');
+    let campoEnviarMsg = document.querySelector('.mensagem-envio');    
 
-    if(campoEnviarMsg.value !== '') {
+    let novaMsg = {
+        from: nome.name,
+        to: "Todos",
+        text: campoEnviarMsg.value,
+        type: "message"
+    };      
 
-        let novaMsg = {
-            from: nome.name,
-            to: "Todos",
-            text: campoEnviarMsg.value,
-            type: "message"
-        };       
-
-        const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
-        promessa.then(renderizarMsgs);
-        promessa.catch(resposta => console.log(`resposta do envio da msg: ${resposta}`));
-        campoEnviarMsg.value = "";
-    }
+    const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
+    promessa.then(renderizarMsgs);
+    promessa.catch(resposta => console.log(resposta));
+    campoEnviarMsg.value = "";    
 } 
 
 function receberMsgs(resposta){
