@@ -7,6 +7,7 @@ let resolicitarNome = 0;
 let nomeDigitado = "";
 let listaDeParticipantes = [];
 let iniciaAtualizacaoPagina = 0;
+let msgEnvio = {};
 
 function abrirListaParticipantes() {
     const participantes = document.querySelector('.lista');
@@ -63,16 +64,16 @@ function solicitarNome(){
 function enviarMsg() {
     let campoEnviarMsg = document.querySelector('.mensagem-envio');    
 
-    let novaMsg = {
+    msgEnvio = {
         from: nome.name,
         to: "Todos",
         text: campoEnviarMsg.value,
         type: "message"
-    };
-    
+    };    
     
     if(campoEnviarMsg.value !== ''){
-        const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
+        console.log(msgEnvio);
+        const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', msgEnvio);
         promessa.then(renderizarMsgs);
         promessa.catch(resposta => console.log(resposta));
         campoEnviarMsg.value = "";
