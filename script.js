@@ -61,6 +61,16 @@ function solicitarNome(){
     promessa.catch(erroEnvioNome);       
 }
 
+function renderizarMsgs(){
+    const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
+    promessa.then(receberMsgs);
+
+    if(!iniciaAtualizacaoPagina){
+        setInterval(renderizarMsgs, 3000);
+        iniciaAtualizacaoPagina++;
+    }
+}
+
 function enviarMsg() {
     let campoEnviarMsg = document.querySelector('.mensagem-envio');    
 
@@ -74,7 +84,8 @@ function enviarMsg() {
     if(campoEnviarMsg.value !== ''){
         console.log(msgEnvio);
         const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', msgEnvio);
-        promessa.then(renderizarMsgs);
+        promessa.then(resposta => console.log(resposta));
+        renderizarMsgs();
         promessa.catch(resposta => console.log(resposta));
         campoEnviarMsg.value = "";
     }    
@@ -111,14 +122,6 @@ function receberMsgs(resposta){
     }
 }
 
-function renderizarMsgs(){
-    const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
-    promessa.then(receberMsgs);
 
-    if(!iniciaAtualizacaoPagina){
-        setInterval(renderizarMsgs, 3000);
-        iniciaAtualizacaoPagina++;
-    }
-}
 
 solicitarNome();

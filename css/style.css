@@ -138,3 +138,8 @@ span.nome {
     font-weight: 700;
     color: #000000;
 }
+
+button {
+    border: none;
+    background: none;
+}
