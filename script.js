@@ -13,7 +13,11 @@ function abrirListaParticipantes() {
     participantes.classList.remove('hide-list');
 
     const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants');
-    promessa.then(resposta => listaDeParticipantes = resposta.data);
+    promessa.then(resposta => { listaDeParticipantes = resposta.data;
+        console.log(listaDeParticipantes);
+        }
+    );
+    
 }
 
 function fecharListaParticipantes() {
@@ -23,42 +27,10 @@ function fecharListaParticipantes() {
 
 function manterConexao(){
     const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/status', nome);
-    promessa.then(console.log('Conexão mantida'));
-}
-
-function nomeJaExiste(){
-    for(let i = 0; i < listaDeParticipantes.length; i++){
-        let nome = listaDeParticipantes[i].name;
-        if(nomeDigitado === nome){
-            resolicitarNome++;
-            solicitarNome();
-        }
-    }
-}
-
-function solicitarNome(){
-    if(resolicitarNome < 1) {
-        nomeDigitado = prompt("Digite seu nome:\n");
-
-        const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants');
-        promessa.then(resposta => listaDeParticipantes = resposta.data);
-
-        nomeJaExiste();
-    } else {
-        nomeDigitado = prompt("O nome digitado já está em uso\nDigite outro nome:\n");
-    }    
-
-    nome = {
-        name: nomeDigitado
-    }
-
-    const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', nome);
-    promessa.then(respostaEnvioNome);
-    promessa.catch(erroEnvioNome);       
+    promessa.catch(resposta => alert(`Deslogado devido ao erro ${resposta.response.status}`));
 }
 
 function respostaEnvioNome(resposta){ 
-    console.log(resposta) 
     if(resposta.status === 200) {
         setInterval(manterConexao, 5000);
         renderizarMsgs();
@@ -70,6 +42,22 @@ function erroEnvioNome(erro){
         resolicitarNome++;
         solicitarNome();
     }
+}
+
+function solicitarNome(){
+    if(resolicitarNome < 1) {
+        nomeDigitado = prompt("Digite seu nome:\n");
+    } else {
+        nomeDigitado = prompt("O nome digitado é inválido ou já está em uso\nPor gentileza digite outro nome:\n");
+    }
+
+    nome = {
+        name: nomeDigitado
+    }
+
+    promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', nome);
+    promessa.then(respostaEnvioNome);
+    promessa.catch(erroEnvioNome);       
 }
 
 function enviarMsg() {
@@ -86,7 +74,7 @@ function enviarMsg() {
 
         const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
         promessa.then(renderizarMsgs);
-        promessa.catch(resposta => window.location.reload());
+        promessa.catch(resposta => console.log(`resposta do envio da msg: ${resposta}`));
         campoEnviarMsg.value = "";
     }
 } 
@@ -102,13 +90,13 @@ function receberMsgs(resposta){
         
         if(msg.type === "status") {
             ulMsgs.innerHTML += `
-            <li data-test="message">
+            <li data-test="message" class="e-s">
                 <p><span class="time">(${msg.time})</span> <span class="nome">${msg.from}</span> ${msg.text}</p>
             </li>
         `;
         } else if (msg.type === "private_message"){
             ulMsgs.innerHTML += `
-            <li data-test="message">
+            <li data-test="message" class="pm">
                 <p><span class="time">(${msg.time}) </span><span class="nome">${msg.from} </span>reservadamente para <span class="nome">${msg.to}: </span>${msg.text}</p>
             </li>
         `;
