@@ -2,7 +2,6 @@ axios.defaults.headers.common['Authorization'] = 'zTIKqgYY2CkJVaSquSYb4aJo';
 
 let nome = {};
 let listaMsgsRecebidas = [];
-let msgs = [];
 let resolicitarNome = 0;
 let nomeDigitado = "";
 let listaDeParticipantes = [];
