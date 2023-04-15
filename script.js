@@ -16,8 +16,7 @@ function abrirListaParticipantes() {
     promessa.then(resposta => { listaDeParticipantes = resposta.data;
         console.log(listaDeParticipantes);
         }
-    );
-    
+    );    
 }
 
 function fecharListaParticipantes() {
@@ -78,13 +77,15 @@ function enviarMsg() {
         to: "Todos",
         text: campoEnviarMsg.value,
         type: "message"
-    };    
+    }    
     
     if(campoEnviarMsg.value !== ''){
         console.log(msgEnvio);
         const promessa = axios.post("https://mock-api.driven.com.br/api/vm/uol/messages", msgEnvio);
-        promessa.then(resposta => console.log(resposta));
-        renderizarMsgs();
+        promessa.then(resposta => { console.log(resposta); 
+            renderizarMsgs();}
+        );
+        
         promessa.catch(resposta => console.log(resposta));
         campoEnviarMsg.value = "";
     }    
