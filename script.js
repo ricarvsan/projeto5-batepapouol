@@ -68,12 +68,15 @@ function enviarMsg() {
         to: "Todos",
         text: campoEnviarMsg.value,
         type: "message"
-    };      
-
-    const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
-    promessa.then(renderizarMsgs);
-    promessa.catch(resposta => console.log(resposta));
-    campoEnviarMsg.value = "";    
+    };
+    
+    
+    if(campoEnviarMsg.value !== ''){
+        const promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', novaMsg);
+        promessa.then(renderizarMsgs);
+        promessa.catch(resposta => console.log(resposta));
+        campoEnviarMsg.value = "";
+    }    
 } 
 
 function receberMsgs(resposta){
