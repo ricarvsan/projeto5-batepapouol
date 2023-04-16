@@ -97,7 +97,7 @@ function receberMsgs(resposta){
     const ulMsgs = document.querySelector('.mensagens');
     ulMsgs.innerHTML = '';
 
-    for( let i = 0; i < listaMsgsRecebidas.length; i++){
+    for(let i = 0; i < listaMsgsRecebidas.length; i++){
         let msg = listaMsgsRecebidas[i];
         
         if(msg.type === "status") {
@@ -120,8 +120,15 @@ function receberMsgs(resposta){
         `;
         }
     }
+    ulMsgs.lastElementChild.scrollIntoView();
 }
 
-
+/* ENVIO COM O ENTER */
+document.addEventListener("keypress", function(e) {
+    if(e.key === "Enter") {
+        const btn = document.querySelector('.icone-sendmessage');
+        btn.click();
+    }
+});
 
 solicitarNome();
