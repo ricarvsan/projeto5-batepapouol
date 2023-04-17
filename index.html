@@ -15,15 +15,24 @@
 <body>
 
     <!-- PAGINA DE LOGIN -->
-
-
+    <!-- <div class="login">
+        <div class="logo-login">
+            <img src="./img/logo.png" alt="">
+        </div>
+        <div data-test="input-name" class="">
+            <input class="name-input" type="text" placeholder="Digite seu nome">
+        </div>
+        <button data-test="send-name" class="entrar-btn" onclick="login()">
+            Entrar            
+        </button>
+    </div> -->
 
     <!-- CABEÇALHO -->
     <div class="header">
         <div class="logo">
             <img src="./img/logo.png" alt="">
         </div>
-        <div class="icone-bp" onclick="abrirListaParticipantes()">
+        <div data-test="open-participants" class="icone-bp" onclick="abrirListaParticipantes()">
             <ion-icon name="people"></ion-icon>
         </div>
     </div>
@@ -35,21 +44,63 @@
     </div>
 
     <!-- LISTA DE PARTICIPANTES -->
-    <div class="lista hide-list" onclick="fecharListaParticipantes()">
-        <div class="participantes"></div>
-    </div>
+    <!-- <div class="lista hide-list" onclick="fecharListaParticipantes()">
+        <div disable class="participantes">
+            <div class="texto-escolher-participante">
+                <p>Escolha um contato para enviar mensagem:</p>
+            </div>
+            <div class="lista-participantes">
+                <ul>
+                    <li>
+                        <div class="item-lista">
+                            <div class="icone-esquerdo">
+                                <ion-icon name="lock-closed"></ion-icon>
+                            </div>
+                            <div class="">
+                                <div>
+                                    Todos
+                                </div>
+                                <div class="icone-check">
+                                    <ion-icon name="checkmark"></ion-icon>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="texto-escolher-participante">
+                <p>Escolha a visibilidade:</p>
+            </div>
+            <div class="pub-pm">
+                <div class="flex">
+                    <ion-icon name="lock-open"></ion-icon>
+                    <div class="publico" onclick="">
+                        <p class="fonte">Público</p>
+                        <ion-icon name="checkmark"></ion-icon>
+                    </div>
+                </div>
+                <div class="flex">
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <div class="reservado" onclick="">
+                        <p class="fonte">Reservadamente</p>
+                        <ion-icon name="checkmark"></ion-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
 
     <!-- RODAPÉ -->
     <div class="footer">
-        <div data-test="input-message" class="text-input">
-            <input class="mensagem-envio" type="text" placeholder="Escreva aqui...">
+        <div  class="text-input">
+            <input data-test="input-message" class="mensagem-envio" type="text" placeholder="Escreva aqui...">
+            <div data-test="recipient" class="enviando">
+                enviado para
+            </div>        
         </div>
         <button data-test="send-message" class="icone-sendmessage" onclick="enviarMsg()">
             <ion-icon name="paper-plane-outline"></ion-icon>
         </button>
-        <!-- <div data-test="send-message" class="icone-sendmessage" onclick="enviarMsg()">
-            <ion-icon name="paper-plane-outline"></ion-icon>
-        </div> -->
     </div>  
 
                                 <!-- SCRIPTS -->

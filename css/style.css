@@ -14,6 +14,25 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     font-weight: 400;
+    height: 667px;
+}
+
+.flex {
+    display: flex;
+}
+
+.item-lista {
+    display: flex;
+}
+
+.icone-esquerdo ion-icon {
+    width: 24px;
+    height: 17px;
+}
+
+.icone-check {
+    border: 3px solid #28BB25;
+    background: #28BB25;
 }
 
 .header {
@@ -46,7 +65,8 @@ body {
 
 .mid {
     width: 375px;
-    margin: 85px 0;
+    margin-top: 85px;
+    padding-bottom: 85px;
 }
 
 .footer {
@@ -63,6 +83,11 @@ body {
     padding: 0px 17px;
 }
 
+.enviando {
+    font-size: 14px;
+    font-weight: 300;
+}
+
 .text-input {
     width: 145px;
     height: 30px;
@@ -72,9 +97,12 @@ body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     font-size: 18px;
-    color: #000000;
     border: none;
     outline: none;
+}
+
+.text-input input::placeholder{
+    color: #000000;
 }
 
 .text-input input:placeholder-shown {
@@ -87,7 +115,6 @@ body {
 }
 
 li {
-    background-color: red;
     width: 100%;
     margin-bottom: 4px;
     min-height: 40px;
@@ -107,6 +134,55 @@ li {
     background-color: #FFDEDE;
 }
 
+.login {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 375px;
+    height: 100%;
+    background: #FFFFFF;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo-login {
+    margin-top: 72px;
+}
+
+.logo-login img {
+    width: 130px;
+    height: 92px;
+}
+
+.name-input {
+    margin-top: 94px;
+    width: 260px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 400;
+    color: #AEAEAE;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 4px;
+    border: 1px solid #D7D7D7
+}
+
+.entrar-btn {
+    margin-top: 15px;
+    width: 109px;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #696969;
+    border-radius: 9px;
+    background-color: #E7E7E7;
+    border: none;
+}
+
 .lista {
     position: fixed;
     top: 0;
@@ -123,9 +199,28 @@ li {
     background: #FFFFFF;
     width: 259px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.hide-list {
+.texto-escolher-participante {
+    width: 100%;
+    height: 84px;
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0 45px;
+}
+
+.fonte {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.hide-list, .hide {
     display: none;
 }
 
@@ -139,7 +234,7 @@ span.nome {
     color: #000000;
 }
 
-button {
+button.icone-sendmessage  {
     border: none;
     background: none;
 }

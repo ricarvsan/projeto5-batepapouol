@@ -11,12 +11,16 @@ let msgEnvio = {};
 function abrirListaParticipantes() {
     const participantes = document.querySelector('.lista');
     participantes.classList.remove('hide-list');
+    
+    atualizaListaParticipantes();
+}
 
+function atualizaListaParticipantes() {
     const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/participants');
     promessa.then(resposta => { listaDeParticipantes = resposta.data;
         console.log(listaDeParticipantes);
         }
-    );    
+    );
 }
 
 function fecharListaParticipantes() {
@@ -32,14 +36,15 @@ function manterConexao(){
 function respostaEnvioNome(resposta){ 
     if(resposta.status === 200) {
         setInterval(manterConexao, 5000);
+        atualizaListaParticipantes();
+        setInterval(atualizaListaParticipantes, 10000);        
         renderizarMsgs();
     }
 }
 
 function erroEnvioNome(erro){
     if(erro.response.status === 400){
-        resolicitarNome++;
-        solicitarNome();
+        window.location.reload();
     }
 }
 
@@ -58,6 +63,24 @@ function solicitarNome(){
     promessa.then(respostaEnvioNome);
     promessa.catch(erroEnvioNome);       
 }
+
+/* function login(){
+    const input = document.querySelector('.name-input');
+    input.value
+    nome = {
+        name: input.value
+    }
+
+    input.value = '';
+    console.log(nome.name);
+
+    promessa = axios.post('https://mock-api.driven.com.br/api/vm/uol/participants', nome);
+    promessa.then(respostaEnvioNome);
+    promessa.catch(erroEnvioNome);
+    
+    const divlogin = document.querySelector('.login');
+    divlogin.classList.add('hide'); 
+} */
 
 function renderizarMsgs(){
     const promessa = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
